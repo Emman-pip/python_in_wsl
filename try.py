@@ -36,12 +36,38 @@ class LinkedList:
     def find(self, index):
         count = 0
         lst = self.list
-        if index < 1:
-            return "INVALID INPUT: index starts at 1"
+        # if index < 1:
+        #     return "INVALID INPUT: index starts at 1"
         try:
             return self.__findCase2(lst, count, index).value
         except:
-            return "INVALID INPUT: index > length of the list"
+            return "ERROR: index is out of range"
+    
+    def __popLogic(self, lst):
+        while lst.next.next != None:
+            lst = lst.next
+        lst.next = None
+
+    def pop(self):
+        lst = self.list
+        self.__popLogic(lst)
+
+    def __insertAtLogic(self, lst, count, index, value):
+        while count!=index:
+            lst = lst.next
+            count+=1
+        value.next = lst.next
+        lst.next = value
+        return "success"
+
+    def insertAt(self, index, value):
+        count = 1
+        lst = self.list
+        data = node(value)
+        try:
+           return self.__insertAtLogic(lst, count, index, data)
+        except:
+            return "ERROR: Index is out of range"
 
 def main():
     lL = LinkedList()
@@ -49,10 +75,13 @@ def main():
     node2 = node("hahaha")
     lL.insert(node1)
     lL.insert(node2)
-    lL.insert(node("dasiouhdasidhahudshdoashdioahdoashdiasdi"))
+    lL.insert(node("dasiouhdasid"))
+    # lL.pop()
     
+    print(lL.insertAt(4, "here"))
     print(lL.printList())
-    print(lL.find(1))
+    print(lL.printList())
+    print(lL.find(3))
 
 if __name__ == "__main__":
     main()
