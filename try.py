@@ -80,12 +80,6 @@ class LinkedList:
         except:
             return "ERROR: index out of range"
 
-    def prepend(self, value):
-        node1 = node(value)
-        node1.next = self.list.next
-        self.list.next = node1
-        return "success"
-
 def main():
     lL = LinkedList()
     node1 = node("asljkd")
@@ -97,8 +91,7 @@ def main():
     
     lL.insertAt(3, "here")
     print(lL.printList())
-    # print(lL.removeAt(-1))
-    print(lL.prepend("first"))
+    # print(lL.removeAt(1))
     print(lL.printList())
     print(lL.find(1))
 
