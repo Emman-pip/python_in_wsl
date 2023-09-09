@@ -61,13 +61,24 @@ class LinkedList:
         return "success"
 
     def insertAt(self, index, value):
-        count = 1
+        count = 0
         lst = self.list
         data = node(value)
         try:
            return self.__insertAtLogic(lst, count, index, data)
         except:
             return "ERROR: Index is out of range"
+    
+
+    def removeAt(self, index):
+        count = 0
+        lst = self.list
+        try:
+            change = self.__findCase2(lst, count, index)
+            change.next = change.next.next
+            return "success"   
+        except:
+            return "ERROR: index out of range"
 
 def main():
     lL = LinkedList()
@@ -78,10 +89,11 @@ def main():
     lL.insert(node("dasiouhdasid"))
     # lL.pop()
     
-    print(lL.insertAt(4, "here"))
+    lL.insertAt(3, "here")
     print(lL.printList())
+    print(lL.removeAt(-1))
     print(lL.printList())
-    print(lL.find(3))
+    print(lL.find(1))
 
 if __name__ == "__main__":
     main()
